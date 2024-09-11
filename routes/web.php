@@ -36,7 +36,7 @@ Route::middleware(['branding','XSS'])->group(function () {
     Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 });
 
-Route::group(['middleware' => ['checkConcurrentLogins', 'auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::get('locations', Location::class)->name('locations');
     Route::get('packages', Package::class)->name('packages');
