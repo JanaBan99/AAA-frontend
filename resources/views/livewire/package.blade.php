@@ -1,0 +1,255 @@
+<div>
+    <div wire:loading wire:target="addNewPackage, updatePackage, destroyPackage">
+        @include('components.spinners.page-loading-indicator')
+    </div>
+    <div class="container-fluid py-4">
+        <div>
+            @include('components.modals.package-modal')
+        </div>
+
+        <div id="alert">
+            @if (session()->has('message'))
+                {{-- <div class="alert alert-{{ session('status', 'info') }}">
+                    <i class="fa fa-check"></i>
+                    {{ session('message') }}
+                </div> --}}
+                <div class="alert alert-{{ session('status', 'info') }} alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ session('message') }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white mx-3"><strong> Packages</strong></h6>
+                        </div>
+                    </div>
+                    <div class="row ms-2 me-2 my-3">
+                        <div class="col-sm-6">
+                            <div class="search-box">
+                                <button class="btn-search"><i class="fas fa-search"></i></button>
+                                <input type="text" class="input-search" placeholder="Type to Search..." wire:model.debounce.350ms="searchTerm">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 my-auto text-end add-btn-responsive">
+                            <button class="btn bg-gradient-dark mb-0" data-bs-toggle="modal" data-bs-target="#packageModal"><i
+                                class="material-icons text-sm">add</i>Add New Package</button>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <div>
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                PACKAGE ID</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                PACKAGE NAME</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                DESCRIPTION</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                GROUP ID</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                UPLINK</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                DOWNLINK</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                TIMEQUOTA</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                VOLQUOTA</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                IDLE TIMEOUT</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                CREATED DATE
+                                            </th>
+                                            <th class="text-secondary opacity-7"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($packages as $package )
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->PKGID}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->PKGNAME}}</h6>
+
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->DESCRIPTION}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->GROUPID}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->UPLINK}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->DOWNLINK}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->TIMEQUOTA}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->VOLQUOTA}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->IDLETIMEOUT}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{$package->CREATEDATE}}</h6>
+
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <div class="row">
+                                                        <div class="col hand-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                            <i class="fas fa-edit fs-3" data-bs-toggle="modal" wire:click="editPackage({{$package->REFID}})" data-bs-target="#updatePackageModal"></i>
+                                                        </div>
+                                                        <div class="col hand-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <i class="fa fa-trash fs-3 ms-2" data-bs-toggle="modal" wire:click="deletePackage({{$package->REFID}})" data-bs-target="#deletePackageModal"></i>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <button type="button" rel="tooltip" class="btn btn-success btn-link" data-bs-toggle="modal" wire:click="editPackage({{$package->reference_id}})" data-bs-target="#updatePackageModal">
+                                                        <i class="material-icons fs-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button></div>
+                                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link"  data-bs-toggle="modal" wire:click="deletePackage({{$package->reference_id}})" data-bs-target="#deletePackageModal">
+                                                        <i class="material-icons fs-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">delete</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button> --}}
+                                                </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+                                @if(count($packages) === 0)
+                                    <p class="no-data-found">No packages found</p>
+                                @endif
+                            </div>
+
+                            <div class="p-2">
+                                {{$packages->links('pagination::bootstrap-5')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@push('styles')
+    <style>
+        .no-data-found {
+            padding: 50px;
+            color: #888;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /*  search button css  */
+        .search-box{
+            width: fit-content;
+            height: fit-content;
+            position: relative;
+        }
+        .input-search{
+            height: 50px;
+            width: 50px;
+            border-style: none;
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            outline: none;
+            border-radius: 25px;
+            transition: all .5s ease-in-out;
+            background-color: #c7c1c774;
+            padding-right: 40px;
+            color:black;
+        }
+        .input-search::placeholder{
+            color:#888;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 100;
+        }
+        .btn-search{
+            width: 50px;
+            height: 50px;
+            border-style: none;
+            font-size: 20px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            border-radius: 50%;
+            position: absolute;
+            right: 0px;
+            color:black ;
+            background-color:transparent;
+            pointer-events: painted;
+        }
+        .btn-search:focus ~ .input-search{
+            width: 300px;
+            border-radius: 0px;
+            color:black ;
+            background-color: transparent;
+            border-bottom:1px solid #888;
+            transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+        }
+        .input-search:focus{
+            width: 300px;
+            border-radius: 0px;
+            background-color: transparent;
+            border-bottom:1px solid #888;
+            transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+        }
+    </style>
+@endpush
