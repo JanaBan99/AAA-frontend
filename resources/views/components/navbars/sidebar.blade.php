@@ -29,12 +29,12 @@
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'chat-history' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('chat-history') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">place</i>
+                        <i class="material-icons opacity-10">chat</i>
                     </div>
-                    <span class="nav-link-text ms-1">chat-history</span>
+                    <span class="nav-link-text ms-1">Chat History</span>
                 </a>
             </li>
- 
+
         </ul>
     </div>
 
