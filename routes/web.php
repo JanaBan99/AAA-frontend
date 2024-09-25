@@ -7,14 +7,14 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Location;
-use App\Http\Livewire\Package;
-use App\Http\Livewire\Subscriber;
-use App\Http\Livewire\Master;
-use App\Http\Livewire\Profile\UserProfile;
-use App\Http\Livewire\Notifications;
-use App\Http\Livewire\AAALogs;
-use App\Http\Livewire\RadiusLogs;
+use App\Http\Livewire\ChatHistory;
+// use App\Http\Livewire\Package;
+// use App\Http\Livewire\Subscriber;
+// use App\Http\Livewire\Master;
+// use App\Http\Livewire\Profile\UserProfile;
+// use App\Http\Livewire\Notifications;
+// use App\Http\Livewire\AAALogs;
+// use App\Http\Livewire\RadiusLogs;
 use GuzzleHttp\Middleware;
 
 /*
@@ -38,11 +38,6 @@ Route::middleware(['branding','XSS'])->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
-    Route::get('locations', Location::class)->name('locations');
-    Route::get('packages', Package::class)->name('packages');
-    Route::get('devices', Subscriber::class)->name('devices');
-    Route::get('user-profile', UserProfile::class)->name('user-profile');
-    Route::get('aaalogs', AAALogs::class)->name('aaalogs');
-    Route::get('radiuslogs', RadiusLogs::class)->name('radiuslogs');
-    Route::get('masters', Master::class)->name('masters');
+    Route::get('chat-history', ChatHistory::class)->name('chat-history');
+    // Route::get('knowledge-base-creation', Package::class)->name('knowledgeBaseCreation');
 });

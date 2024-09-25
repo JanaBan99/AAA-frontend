@@ -21,11 +21,11 @@
             <form method="POST" action="" class="d-none" id="logout-form">
                 @csrf
             </form>
-            <ul class="navbar-nav  justify-content-end">
+           <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="{{ route('user-profile')}}" class="nav-link text-body font-weight-bold px-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+                    <!-- <a href="{{ route('user-profile')}}" class="nav-link text-body font-weight-bold px-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
                         <i class="fa fa-user fa-2x me-sm-3"></i>
-                    </a>
+                    </a> -->
                 </li>
                 <li class="nav-item d-flex align-items-center">
                     <livewire:auth.logout/>

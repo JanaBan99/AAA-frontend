@@ -247,7 +247,5 @@ class Location extends Component
         }
         $paginator = new LengthAwarePaginator($items, $fixedCollection->count(), $perPage, $this->page, ['path' => url('locations')]);
         return view('livewire.location', ['locations' => $paginator]);
-
     }
-
 }
